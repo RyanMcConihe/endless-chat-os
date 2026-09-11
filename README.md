@@ -143,6 +143,22 @@ Endless Chat OS
     = preserve and recover project knowledge
 ```
 
+## Part of a larger system
+
+Endless Chat OS is one layer of a broader experimental AI-assisted project operating system designed to reduce dependence on any single model, provider, or conversation.
+
+The larger direction is to keep durable state at the project level, then let different AI tools contribute where they are strongest while shared evidence, handoffs, decisions, and recovery state remain outside the individual chat.
+
+At a high level:
+
+- **Endless Chat OS** provides continuity: durable memory, retrieval, handoffs, project health, stale/conflict detection, and fresh-session recovery.
+- **Project Execution Engine** is the developing orchestration layer intended to take a project design and move it through Worlds, Levels, Checkpoints, implementation, independent review, and verified progression.
+- **[YouTube Second Brain](https://github.com/RyanMcConihe/youtube-second-brain)** is one real product being built inside this environment and acts as a practical test bed for the larger architecture.
+
+The intended review model is deliberately asymmetric: true blockers, design decisions, meaningful cost choices, and material owner tradeoffs can stop progress; recommendations and non-blocking improvements should be recorded in durable, human-readable form for later review rather than repeatedly interrupting active execution.
+
+This broader architecture is still being developed. The public description distinguishes between verified foundations and planned orchestration rather than presenting future automation as complete.
+
 ## Public / private boundary
 
 This repository is intentionally a **public project overview**, not the implementation repository.
