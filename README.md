@@ -113,19 +113,21 @@ That was the first important proof of the core idea: **a real project can surviv
 
 ## Current development frontier
 
-The current work is moving from reliable recovery toward **zero-relay automation**.
+The current work is **World 7 — Never Lose the Work**.
 
-A deterministic, read-only continuity health checker has been developed to inspect project state and report whether:
+After proving fresh-session recovery and building deterministic continuity checks, the project is now testing whether meaningful project state can be captured into a structured save package without the human owner manually deciding which files and outputs need to be carried forward.
 
-- the minimum memory package exists;
-- the retrieval manifest is valid;
-- current-state files agree;
-- proof is present;
-- stale/conflicting state exists;
-- the next action is clear;
-- human input is actually required.
+The first selected-project auto-save pilot has produced a structured save event containing the project handoff, state, open loops, retrieval manifest, archive/index updates, and save-state record. Deterministic static evaluation reports the pilot as healthy, internally consistent, fresh-chat ready, and not requiring owner intervention.
 
-The system is intentionally becoming more autonomous in stages: **read and verify first, automate repairs later.**
+The next proof is a genuinely fresh-session recovery starting only from the retrieval manifest and the saved event.
+
+One verification caveat remains important: the latest GitHub-hosted CI attempt did not execute because a runner was not allocated, so the project does **not** claim that CI independently verified the current World 7 pilot. Static verification and CI execution are kept separate deliberately.
+
+The broader direction is:
+
+```text
+recovery → health checks → structured save events → auto-save pilot → fresh-session proof → less manual relay
+```
 
 ## Relationship to YouTube Second Brain
 
@@ -151,7 +153,7 @@ The larger direction is to keep durable state at the project level, then let dif
 
 At a high level:
 
-- **Endless Chat OS** provides continuity: durable memory, retrieval, handoffs, project health, stale/conflict detection, and fresh-session recovery.
+- **Endless Chat OS** provides continuity: durable memory, retrieval, handoffs, project health, stale/conflict detection, structured saves, and fresh-session recovery.
 - **Project Execution Engine** is the developing orchestration layer intended to take a project design and move it through Worlds, Levels, Checkpoints, implementation, independent review, and verified progression.
 - **[YouTube Second Brain](https://github.com/RyanMcConihe/youtube-second-brain)** is one real product being built inside this environment and acts as a practical test bed for the larger architecture.
 
@@ -169,7 +171,7 @@ This public layer documents the problem, architecture, verified milestones, desi
 
 ## Current status
 
-**Active development.**
+**Active development — World 7: Never Lose the Work.**
 
 Verified foundations include:
 
@@ -181,10 +183,11 @@ Verified foundations include:
 - severity-based review handling;
 - owner-facing World / Level / Checkpoint mapping;
 - first real-project continuity rollout;
-- deterministic continuity-health checking.
+- deterministic continuity-health checking;
+- first structured selected-project auto-save pilot.
 
 Current focus:
 
 ```text
-recovery → deterministic health checks → CI gating → reduced manual relay → broader automation
+verify pilot save package → fresh-session recovery proof → strengthen automatic capture → reduce manual relay
 ```
