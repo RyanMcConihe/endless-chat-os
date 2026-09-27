@@ -1,0 +1,64 @@
+name: Development Tools Source Snapshots
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/development-tools-source-snapshots.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Matt Pocock skills
+        run: git clone --depth 1 https://github.com/mattpocock/skills.git mattpocock-skills
+
+      - name: Checkout Pstack only
+        run: |
+          git clone --depth 1 --filter=blob:none --sparse https://github.com/cursor/plugins.git cursor-plugins
+          cd cursor-plugins
+          git sparse-checkout set pstack
+
+      - name: Checkout I Have ADHD
+        run: git clone --depth 1 https://github.com/ayghri/i-have-adhd.git i-have-adhd
+
+      - name: Checkout Ponytail
+        run: git clone --depth 1 https://github.com/DietrichGebert/ponytail.git ponytail
+
+      - name: Remove Git metadata
+        run: |
+          rm -rf mattpocock-skills/.git
+          rm -rf cursor-plugins/.git
+          rm -rf i-have-adhd/.git
+          rm -rf ponytail/.git
+
+      - name: Upload Matt Pocock snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: mattpocock-skills
+          path: mattpocock-skills
+          retention-days: 1
+
+      - name: Upload Pstack snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: pstack-potato
+          path: cursor-plugins/pstack
+          retention-days: 1
+
+      - name: Upload I Have ADHD snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: i-have-adhd
+          path: i-have-adhd
+          retention-days: 1
+
+      - name: Upload Ponytail snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: ponytail
+          path: ponytail
+          retention-days: 1
